@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: cr.bcx.zone/bcx-docker/chassis/base:v1.7
+    volumes:
+      - .:/srv/www
+    environment:
+      PHP_ARTISAN_MIGRATE: 'false'
+    ports:
+      - 80:80
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./storage/app/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: world_cup
+      MYSQL_USER: world_cup
+      MYSQL_PASSWORD: secret
