@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<h1>Hello!</h1>
+<div class="container-fluid">
+    <h1>Loading...</h1>
+</div>
 @endsection

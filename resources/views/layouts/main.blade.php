@@ -5,22 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Completely Unprepared World Cup Bracket</title>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Styles -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ route('logout') }}">Logout</a>
-            @else
-                <a href="{{ route('login') }}">Login/Signup</a>
-            @endauth
-        </div>
-    @endif
 
-    @if(Auth::user())
-        User: {{Auth::user()->name ? Auth::user()->name : Auth::user()->email}}
-    @endif
+    {{-- @if (Route::has('login'))
+    <div class="top-right links">
+        @auth
+            <a href="{{ route('logout') }}">Logout</a>
+        @else
+            <a href="{{ route('login') }}">Login/Signup</a>
+        @endauth
+    </div>
+    @endif --}}
 
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
+
+    <script>
+        window.user = {!! Auth::User() !!}
+    </script>
+    <script src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
