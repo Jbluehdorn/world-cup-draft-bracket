@@ -1,7 +1,15 @@
 <template>
     <div>
-        <h1>Profile!</h1>
-        {{$route.params.sub}}
+        <div class="text-center" v-show="loading">
+            <i class="fa fa-spin fa-spinner"></i>
+        </div>
+
+        <div v-show="!loading">
+            <h1>
+                <img :src="profile.picture" alt="" class="rounded" height="75">
+                {{profile.name || profile.email}}
+            </h1>
+        </div>
     </div>
 </template>
 
@@ -9,12 +17,22 @@
 export default {
     data() {
         return {
-            profile: null
+            profile: null,
+            loading: false
         }
     },
-    async mounted() {
-        let resp = await this.$http.get('/api/users/' + this.$route.params.sub);
-        this.profile = await resp.json();
+    mounted() {
+        this.load();
+    },
+    methods: {
+        async load() {
+            this.loading = true;
+
+            let resp = await this.$http.get('/api/users/' + this.$route.params.sub);
+            this.profile = await resp.json();
+
+            this.loading = false;
+        }
     }
 }
 </script>

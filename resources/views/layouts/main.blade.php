@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Completely Unprepared World Cup Bracket</title>
 
+    <link rel="icon" type="image/png" href="images/logo.png">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

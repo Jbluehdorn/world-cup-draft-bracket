@@ -19,7 +19,6 @@ class CustomUserRepository extends Auth0UserRepository
      * @return User
      */
     protected function upsertUser( $profile ) {
-
         // See if we have a user that matches the Auth0 user_id
         $user = User::where( 'sub', $profile['sub'] )->first();
 
@@ -31,6 +30,8 @@ class CustomUserRepository extends Auth0UserRepository
             $user->setAttribute( 'email', $profile['email'] );
             $user->setAttribute( 'sub', $profile['sub'] );
             $user->setAttribute( 'name', isset( $profile['name'] ) ? $profile['name'] : '' );
+            $user->setAttribute('picture', isset($profile['picture']) ? $profile['picture'] : 'images/default.png');
+            $user->setAttribute('role', $profile['http://www.logicds.io/role']);
 
             $user->save();
         }

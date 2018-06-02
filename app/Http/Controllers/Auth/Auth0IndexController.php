@@ -14,7 +14,7 @@ class Auth0IndexController extends Controller
      */
     public function login()
     {
-        return \App::make('auth0')->login(null, null, ['scope' => 'openid email email_verified profile'], 'code');
+        return \App::make('auth0')->login(null, null, ['scope' => 'openid email user_metadata email_verified profile'], 'code');
     }
 
     /**
