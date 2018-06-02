@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\User;
+
+class UsersController extends Controller
+{
+    public function getUser($sub) {
+        return User::where('sub', 'LIKE', '%'.$sub.'%')->first();
+    }
+}
