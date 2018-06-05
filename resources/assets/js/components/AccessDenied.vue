@@ -1,8 +1,9 @@
 <template>
     <div>
-        <h1 color="danger">
-            <i class="fa fa-error"></i>
-            Acces Denied
+        <h1 class="text-danger text-center">
+            <i class="fa fa-ban"></i>
+            Access Denied
+            <i class="fa fa-ban"></i>
         </h1>
     </div>
 </template>

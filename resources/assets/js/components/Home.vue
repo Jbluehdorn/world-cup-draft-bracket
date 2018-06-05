@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h1>Completely Unprepared World Cup Draft Bracket</h1>
+        <h1>Welcome to the Completely Unprepared Draft Bracket!</h1>
     </div>
 </template>
