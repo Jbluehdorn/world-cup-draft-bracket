@@ -19,4 +19,5 @@ Route::group([
     'namespace' => 'Api',
 ], function() {
     Route::get('users/{sub}', 'UsersController@getUser');
+    Route::resource('teams', 'TeamsController');
 });
