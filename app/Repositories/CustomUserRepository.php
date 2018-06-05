@@ -25,16 +25,17 @@ class CustomUserRepository extends Auth0UserRepository
         // In not, add them to the database
         if ( ! $user ) {
             $user = new User();
-            
-            // All are required, no default set
-            $user->setAttribute( 'email', $profile['email'] );
-            $user->setAttribute( 'sub', $profile['sub'] );
-            $user->setAttribute( 'name', isset( $profile['name'] ) ? $profile['name'] : '' );
-            $user->setAttribute('picture', isset($profile['picture']) ? $profile['picture'] : 'images/default.png');
-            $user->setAttribute('role', $profile['http://www.logicds.io/role']);
-
-            $user->save();
         }
+            
+        // All are required, no default set
+        $user->setAttribute( 'email', $profile['email'] );
+        $user->setAttribute( 'sub', $profile['sub'] );
+        $user->setAttribute( 'name', isset( $profile['name'] ) ? $profile['name'] : '' );
+        $user->setAttribute('picture', isset($profile['picture']) ? $profile['picture'] : 'images/default.png');
+        $user->setAttribute('role', $profile['http://www.logicds.io/role']);
+
+        $user->save();
+        
         return $user;
     }
 
