@@ -25,6 +25,9 @@ export default new VueRouter({
         children: [{
             path: 'new',
             component: require('./components/Teams/Create')
+        }, {
+            path: ':id',
+            component: require('./components/Teams/Show')
         }]
     }, {
         path: '/error',

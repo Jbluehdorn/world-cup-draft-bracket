@@ -17,10 +17,10 @@
 
             <div class="form-group">
                 <label>Name:</label>
-                <input type="text" class="form-control" placeholder="ex. Paraguay" v-model="name">
+                <input type="text" class="form-control" placeholder="ex. Paraguay" v-model="name" @keyup.enter="save">
             </div>
 
-            <button class="btn btn-primary pull-right" @click="save()" :disabled="saving">
+            <button class="btn btn-primary pull-right" @click="save" :disabled="saving">
                 <span v-show="!saving">Save</span>
                 <i class="fa fa-spinner fa-spin" v-show="saving"></i>
             </button>
@@ -50,9 +50,13 @@ export default {
             }
 
             let resp = await this.$http.post('/api/teams', {name: this.name});
-            let json = resp.json();
+            let json = await resp.json();
+
+            this.$emit('update');
 
             this.saving = false;
+
+            this.$router.push(`/teams/${json.id}`);
         },
         clearError() {
             this.error = null;

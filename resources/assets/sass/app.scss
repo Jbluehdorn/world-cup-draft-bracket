@@ -7,3 +7,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.clickable {
+    &:hover {
+        cursor: pointer;
+    }
+}
