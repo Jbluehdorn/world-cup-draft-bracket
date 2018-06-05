@@ -38,7 +38,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Team::find($id);
     }
 
     /**
