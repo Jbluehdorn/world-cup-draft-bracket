@@ -77,6 +77,8 @@ export default {
             let resp = await this.$http.get(`/api/users/${this.$route.params.sub}/score`);
             this.profile.score = await resp.json();
 
+            this.$forceUpdate();
+
             this.loading = false;
         }
     }
