@@ -33,7 +33,7 @@
                                         </button>
                                     </div>
                                     <div class="col-6 text-center">
-                                        <input type="number" class="form-control text-center" v-model="increment">
+                                        <input type="number" @keyup.enter="incrementScore" class="form-control text-center" v-model="increment">
                                     </div>
                                     <div class="col-3 text-right">
                                         <button class="btn btn-light" @click="incrementScore" :disabled="saving">
