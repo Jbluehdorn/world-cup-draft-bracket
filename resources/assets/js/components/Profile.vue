@@ -5,13 +5,18 @@
         </div>
 
         <div class="card" v-if="profile" v-show="!loading">
-            <div class="card-body">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    {{profile.name}}
+                </h5>
+            </div>
+
+            <div class="card-body py-1">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-auto px-1">
                         <img alt="profile.name" :src="profile.picture" class="img-fluid img-thumbnail">
                     </div>
-                    <div class="col-10">
-                        <h5>{{profile.name || profile.email}}</h5>
+                    <div class="col">
                         <h3>{{profile.score}} points</h3>
 
                         <ul class="list-group">

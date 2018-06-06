@@ -9,12 +9,12 @@
                 <h3 class="mb-0">CU World Cup Draft Bracket</h3>
             </div>
 
-            <div class="card-body">
+            <div class="card-body py-1">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-auto px-0">
                         <img alt="user.name" :src="user.picture" class="img-fluid img-thumbnail">
                     </div>
-                    <div class="col-10">
+                    <div class="col pl-1">
                         <h5>{{user.name || user.email}}</h5>
                         <h3>{{user.score}} points</h3>
                     </div>
@@ -36,7 +36,7 @@
                             <div class="col-12 p-0">
                                 <ul class="list-group list-group-flush">
                                     <router-link
-                                        :to="`/profile/${user.sub.substring(6, user.sub.length)}`"
+                                        :to="`/profile/${user.sub}`"
                                         tag="li"
                                         v-for="(user, index) in filteredUsers"
                                         :key="index"

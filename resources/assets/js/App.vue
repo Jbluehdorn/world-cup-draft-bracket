@@ -24,6 +24,11 @@
                             <img class="rounded" height="25" :src="user.picture">
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <a href="logout" class="nav-link">
+                            <i class="fa fa-power-off" title="Logout"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
             

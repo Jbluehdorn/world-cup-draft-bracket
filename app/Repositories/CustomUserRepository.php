@@ -28,11 +28,10 @@ class CustomUserRepository extends Auth0UserRepository
         }
             
         // All are required, no default set
-        $user->setAttribute( 'email', $profile['email'] );
         $user->setAttribute( 'sub', $profile['sub'] );
         $user->setAttribute( 'name', isset( $profile['name'] ) ? $profile['name'] : '' );
         $user->setAttribute('picture', isset($profile['picture']) ? $profile['picture'] : 'images/default.png');
-        $user->setAttribute('role', $profile['http://www.logicds.io/role']);
+        $user->setAttribute('role',isset($profile['http://www.logicds.io/role']) ? $profile['http://www.logicds.io/role'] : '');
 
         $user->save();
         

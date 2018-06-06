@@ -44,6 +44,24 @@
                                 
                             </div>
                         </div>
+
+                        <br>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Eliminated
+                            </div>
+
+                            <div class="card-body text-center pb-0">
+                                <vue-switch 
+                                    :color="eliminated ? 'red' : 'blue'"
+                                    v-model="eliminated"
+                                    type-bold="true"
+                                    @input="setEliminated"
+                                    :emit-on-mount="false"
+                                ></vue-switch>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-sm-12 col-md-8">
@@ -54,10 +72,10 @@
 
                             <div class="card-body">
                                 <div class="row" v-if="owner">
-                                    <div class="col-2">
+                                    <div class="col-auto">
                                         <img alt="owner.name" :src="owner.picture" class="img-fluid img-thumbnail">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col">
                                         <h5>{{owner.name || owner.email}}</h5>
                                         <h3>{{owner.score}} points</h3>
                                     </div>
@@ -92,28 +110,6 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                Eliminated
-                            </div>
-
-                            <div class="card-body text-center pb-0">
-                                <vue-switch 
-                                    :color="eliminated ? 'red' : 'blue'"
-                                    v-model="eliminated"
-                                    type-bold="true"
-                                    @input="setEliminated"
-                                    :emit-on-mount="false"
-                                ></vue-switch>
                             </div>
                         </div>
                     </div>

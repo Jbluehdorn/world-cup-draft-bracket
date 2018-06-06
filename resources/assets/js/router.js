@@ -8,7 +8,7 @@ export default new VueRouter({
         component: require('./components/Home')
     }, {
         path: '/profile',
-        redirect: '/profile/' + window.user.sub.substring(6, window.user.sub.length)
+        redirect: '/profile/' + window.user.sub
     }, {
         path: '/profile/:sub',
         component: require('./components/Profile')
