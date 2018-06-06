@@ -49,7 +49,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
-                                Owner <span v-if="owner"> - {{owner.name}}</span>
+                                Owner
                             </div>
 
                             <div class="card-body">
@@ -207,6 +207,10 @@ export default {
     watch: {
         '$route.params.id': function() {
             this.load();
+        },
+        saving: function() {
+            if(!this.saving)
+                this.$emit('update');
         }
     }
 }

@@ -18,14 +18,19 @@
                     </div>
 
                     <ul class="list-group list-group-flush" v-if="teams">
+                        <li class="list-group-item p-1">
+                            <input type="text" class="form-control" v-model="searchTerm" placeholder="Search...">
+                        </li>
                         <router-link
-                            v-for="team in teams"
+                            v-for="team in filteredTeams"
                             :key="team.id"
                             :to="`/teams/${team.id}`"
                             class="list-group-item clickable"
-                            v-text="team.name"
                             tag="li"
-                        ></router-link>
+                        >
+                            {{team.name}}
+                            <span class="pull-right">{{team.score}}</span>
+                        </router-link>
                     </ul>
                 </div>
             </div>
@@ -38,11 +43,14 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
     data() {
         return {
             loading: false,
-            teams: null
+            teams: null,
+            searchTerm: ''
         }
     },
     mounted() {
@@ -56,6 +64,13 @@ export default {
             this.teams = await resp.json();
 
             this.loading = false;
+        }
+    },
+    computed: {
+        filteredTeams() {
+            return _.filter(this.teams, team => {
+                return team.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+            });
         }
     }
 }

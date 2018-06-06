@@ -16,7 +16,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        return Team::get();
+        return Team::orderBy('name')->get();
     }
 
     /**
