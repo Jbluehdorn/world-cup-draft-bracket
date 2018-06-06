@@ -20,4 +20,6 @@ Route::group([
 ], function() {
     Route::resource('users', 'UsersController');
     Route::resource('teams', 'TeamsController');
+
+    Route::get('users/{id}/score', 'UsersController@getScore');
 });

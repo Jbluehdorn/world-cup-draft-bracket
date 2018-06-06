@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Team;
 
 class UsersController extends Controller
 {
+    public function getScore($id) {
+        $teams = $this->show($id)->teams()->get();
+
+        $score = 0;
+
+        foreach($teams as $team) {
+            $score += $team->score;
+        }
+
+        return $score;
+    }
+
     /**
      * Display a listing of the resource.
      *

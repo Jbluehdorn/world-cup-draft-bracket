@@ -59,6 +59,7 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>{{owner.name || owner.email}}</h5>
+                                        <h3>{{owner.score}} points</h3>
                                     </div>
                                 </div>
                                 
@@ -72,12 +73,18 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="form-group">
-                                            <label>New Owner:</label>
-                                            <select class="form-control" v-model="newOwnerSub" >
-                                                <option :value="owner.sub" v-for="owner in owners" :key="owner.sub" v-text="owner.name || owner.email"></option>
-                                            </select>
-                                        </div>
+                                        <label>Change Owner:</label>
+
+                                        <ul class="list-group mb-1">
+                                            <li
+                                                v-for="owner in owners"
+                                                :key="owner.sub"
+                                                :class="owner.sub == newOwnerSub ? 'list-group-item-primary': ''"
+                                                class="list-group-item clickable py-1 px-2"
+                                                @click="setOwner(owner)"
+                                                v-text="owner.name || owner.email"
+                                            ></li>
+                                        </ul>
 
                                         <button class="btn btn-primary pull-right" @click="saveOwner">
                                             <span v-show="!saving">Save</span>
@@ -157,15 +164,30 @@ export default {
             let resp = await this.$http.get(`/api/users`);
             this.owners = await resp.json();
 
-            this.findOwner();
-
             this.loading = false;
+
+            this.findOwner();
+            this.loadOwnerScore();
         },
         findOwner() {
             this.owner = _.find(this.owners, ['sub', this.team.user_id]);
 
             if(this.owner)
-                this.newOwnerSub = this.owner.sub;
+                this.setOwner(this.owner);
+        },
+        setOwner(owner) {
+            this.newOwnerSub = owner.sub;
+        },
+        async loadOwnerScore() {
+            if(!this.owner)
+                return;
+
+            this.loading = true;
+
+            let resp = await this.$http.get(`/api/users/${this.owner.sub}/score`);
+            this.owner.score = await resp.json();
+
+            this.loading = false;
         },
         async saveOwner() {
             if(this.saving)
@@ -180,6 +202,11 @@ export default {
             this.load();
 
             this.saving = false;
+        }
+    },
+    watch: {
+        '$route.params.id': function() {
+            this.load();
         }
     }
 }
