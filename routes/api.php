@@ -18,8 +18,10 @@ Route::get('/users', function() {return 'hello';});
 Route::group([
     'namespace' => 'Api',
 ], function() {
+    Route::get('users/{sub}/score', 'UsersController@getScore');
+    Route::get('users/{sub}/teams', 'UsersController@getTeams');
+    Route::get('teams/top', 'TeamsController@getTopTen');
+
     Route::resource('users', 'UsersController');
     Route::resource('teams', 'TeamsController');
-
-    Route::get('users/{id}/score', 'UsersController@getScore');
 });

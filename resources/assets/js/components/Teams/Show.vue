@@ -13,7 +13,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-sm-12 col-md-4">
                         <div class="card">
                             <div class="card-header">
                                 Score
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="col-8">
+                    <div class="col-sm-12 col-md-8">
                         <div class="card">
                             <div class="card-header">
                                 Owner

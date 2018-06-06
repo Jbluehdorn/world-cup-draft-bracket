@@ -10,8 +10,8 @@ use App\Team;
 
 class UsersController extends Controller
 {
-    public function getScore($id) {
-        $teams = $this->show($id)->teams()->get();
+    public function getScore($sub) {
+        $teams = $this->show($sub)->teams()->get();
 
         $score = 0;
 
@@ -22,6 +22,10 @@ class UsersController extends Controller
         return $score;
     }
 
+    public function getTeams($sub) {
+        return $this->show($sub)->teams()->orderBy('score', 'desc')->get();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +33,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::orderBy('name')->get();
+        $users = User::orderBy('name')->get();
+
+        foreach($users as $user) {
+            $user['score'] = $this->getScore($user->sub);
+        }
+
+        return $users;
     }
 
     /**

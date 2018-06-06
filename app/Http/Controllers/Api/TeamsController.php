@@ -19,6 +19,11 @@ class TeamsController extends Controller
         return Team::orderBy('name')->get();
     }
 
+    public function getTopTen()
+    {
+        return Team::orderBy('score', 'desc')->take(10)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
