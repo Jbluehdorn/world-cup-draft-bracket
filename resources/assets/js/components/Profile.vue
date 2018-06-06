@@ -24,9 +24,10 @@
                                 <strong>Teams</strong>
                             </li>
                             <li 
-                                v-for="(team, index) in teams"
+                                v-for="(team, index) in sortedTeams"
                                 :key="index"
                                 class="list-group-item"
+                                :class="team.eliminated ? 'list-group-item-dark' : ''"
                             >
                                 {{index + 1}}. {{team.name}}
                                 <strong class="pull-right">{{team.score}}</strong>
@@ -40,6 +41,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
     data() {
         return {
@@ -80,6 +83,11 @@ export default {
             this.$forceUpdate();
 
             this.loading = false;
+        }
+    },
+    computed: {
+        sortedTeams() {
+            return _.orderBy(this.teams, ['score'], ['desc']);
         }
     }
 }
