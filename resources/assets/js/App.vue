@@ -30,11 +30,7 @@
         </nav>
 
         <div class="container-fluid pt-1">
-            <div class="card">
-                <div class="card-body">
-                    <router-view></router-view>
-                </div>
-            </div>
+            <router-view></router-view>
         </div>
     </div>
 </template>

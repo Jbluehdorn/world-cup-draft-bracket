@@ -50,7 +50,7 @@ class TeamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Team::find($id)->update($request->all()) ? 'true' : 'false';
     }
 
     /**
