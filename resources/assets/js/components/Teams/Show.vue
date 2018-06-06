@@ -96,6 +96,29 @@
                         </div>
                     </div>
                 </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Eliminated
+                            </div>
+
+                            <div class="card-body text-center pb-0">
+                                <vue-switch 
+                                    :color="eliminated ? 'red' : 'blue'"
+                                    v-model="eliminated"
+                                    type-bold="true"
+                                    @input="setEliminated"
+                                    :emit-on-mount="false"
+                                ></vue-switch>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -103,6 +126,7 @@
 
 <script>
 import _ from 'lodash'
+import VueSwitch from 'vue-switches'
 
 export default {
     data() {
@@ -113,9 +137,11 @@ export default {
             increment: 1,
             owner: null,
             owners: null,
-            newOwnerSub: null
+            newOwnerSub: null,
+            eliminated: false
         }
     },
+    components: {VueSwitch},
     mounted() {
         this.load();
     },
@@ -125,6 +151,7 @@ export default {
 
             let resp = await this.$http.get(`/api/teams/${this.$route.params.id}`);
             this.team = await resp.json();
+            this.eliminated = this.team.eliminated;
 
             this.loading = false;
 
@@ -197,6 +224,20 @@ export default {
 
             await this.$http.patch(`/api/teams/${this.$route.params.id}`, {
                 user_id: this.newOwnerSub
+            });
+
+            this.load();
+
+            this.saving = false;
+        },
+        async setEliminated() {
+            if(this.saving)
+                return;
+
+            this.saving = true;
+
+            await this.$http.patch(`/api/teams/${this.$route.params.id}`, {
+                eliminated: this.eliminated
             });
 
             this.load();

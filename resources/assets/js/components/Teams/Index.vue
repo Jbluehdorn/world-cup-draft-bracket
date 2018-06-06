@@ -26,6 +26,7 @@
                             :key="team.id"
                             :to="`/teams/${team.id}`"
                             class="list-group-item clickable"
+                            :class="team.eliminated ? 'list-group-item-dark' : ''"
                             tag="li"
                         >
                             {{team.name}}

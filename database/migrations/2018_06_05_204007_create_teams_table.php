@@ -17,6 +17,7 @@ class CreateTeamsTable extends Migration
             $table->increments('id');
             $table->string('user_id')->nullable();
             $table->string('name')->nullable();
+            $table->boolean('eliminated')->default(false);
             $table->integer('score')->default(0);
             $table->timestamps();
         });

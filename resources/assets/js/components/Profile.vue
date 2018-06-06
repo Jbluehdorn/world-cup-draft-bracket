@@ -13,15 +13,11 @@
                     <div class="col-10">
                         <h5>{{profile.name || profile.email}}</h5>
                         <h3>{{profile.score}} points</h3>
-                    </div>
-                </div>
 
-                <br>
-
-                <div class="row">
-                    <div class="col-12">
-                        <strong>Teams:</strong>
                         <ul class="list-group">
+                            <li class="list-group-item list-group-item-secondary">
+                                <strong>Teams</strong>
+                            </li>
                             <li 
                                 v-for="(team, index) in teams"
                                 :key="index"
