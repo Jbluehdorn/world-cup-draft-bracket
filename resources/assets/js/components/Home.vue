@@ -39,6 +39,7 @@
                                         :to="`/profile/${user.sub}`"
                                         tag="li"
                                         v-for="(user, index) in filteredUsers"
+                                        v-show="user.score > 0"
                                         :key="index"
                                         class="list-group-item clickable"
                                     >
